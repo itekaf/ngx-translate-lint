@@ -2,7 +2,7 @@ import { isArray } from 'lodash';
 
 import { ILogger } from "../../interface";
 import { ErrorTypes } from "./../../enums";
-import { StylishLogger } from './../StylishLogger';
+import { StylishLogger } from '../logger/StylishLogger';
 import { ResultFileModel } from "./ResultFileModel";
 import { ResultErrorModel } from "./ResultErrorModel";
 

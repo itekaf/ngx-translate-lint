@@ -1,7 +1,7 @@
 enum OptionsTypes {
     glob = 'glob',
     enum = 'enum',
-    boolean = 'boolean'
+    boolean = 'boolean',
 }
 
 export { OptionsTypes };

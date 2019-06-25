@@ -6,6 +6,7 @@ import {
     ErrorTypes,
     ResultModel,
     IRulesConfig,
+    IDefaultValues,
     ResultFileModel,
     ResultErrorModel,
     NgxTranslateLint,
@@ -13,6 +14,9 @@ import {
     ILogger,
 } from "./../core";
 
+import { config } from "./../core/config";
+
+const defaultConfig: IDefaultValues = config.defaultValues;
 
 const logger: ILogger = {
     log(m: string): void {
@@ -23,11 +27,12 @@ const logger: ILogger = {
     },
 };
 
-function runLint(project: string, languages: string, zombies?: ErrorTypes, views?: ErrorTypes, ignore?: string): void {
+function runLint(project: string, languages: string, zombies?: ErrorTypes, views?: ErrorTypes, ignore?: string, misprint?: boolean): void {
     try {
         const errorConfig: IRulesConfig = {
-            keysOnViews: views || ErrorTypes.error,
-            zombieKeys: zombies || ErrorTypes.warning
+            views: views || defaultConfig.rules.views,
+            zombies: zombies ||  defaultConfig.rules.zombies,
+            misprint: misprint || defaultConfig.rules.misprint,
         };
         const validationModel: NgxTranslateLint = new NgxTranslateLint(project, languages, ignore, errorConfig);
         const validationResult: ResultErrorModel[] = validationModel.lint();

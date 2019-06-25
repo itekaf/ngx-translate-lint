@@ -1,11 +1,13 @@
 interface IArgv {
     project: string;
     languages: string;
-    views?: string;
-    zombies?: string;
+
     help?: boolean;
-    version?: boolean;
+    views?: string;
     ignore?: string;
+    version?: boolean;
+    zombies?: string;
+    misprint?: boolean;
 }
 
 export { IArgv };

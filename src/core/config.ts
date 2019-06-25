@@ -1,7 +1,7 @@
 import { ErrorTypes } from './enums';
 import { IAppConfig } from './interface';
 
-const config: IAppConfig = {
+const appConfig: IAppConfig = {
     findKeysList(keys: string[]): RegExp {
         const keysFromDirectiveInsideTag: string = `(?<=<[\\s*\\w*\\s*]*translate[\\s*\\w*\\s*]*[^>]*>\\s*)([a-zA-Z0-9_.]*)(?=\\s*<\\s*\\/.*\\s*>)`;
         const keysFromDirectiveInView: string = `(?<=translate=["']{1,2}|\\[translate\\]=["']{1,2})([A-Za-z0-9_.]+)(?=["']{1,2})`;
@@ -20,12 +20,13 @@ const config: IAppConfig = {
     },
     defaultValues: {
         rules: {
-            keysOnViews: ErrorTypes.error,
-            zombieKeys: ErrorTypes.warning,
+            views: ErrorTypes.error,
+            zombies: ErrorTypes.warning,
+            misprint: true,
         },
         projectPath: './src/app/**/*.{html,ts}',
         languagesPath: './src/assets/i18n/*.json'
     }
 };
 
-export { config };
+export { appConfig as config };

@@ -7,7 +7,7 @@ interface IOption {
     name: keyof IArgv;
     type: OptionsTypes;
     required: boolean;
-    default?: string | ErrorTypes;
+    default?: string | boolean | ErrorTypes;
     describe: string; // Short, used for usage message
     description?: string; // Long, used for `--help`
     possibaleValues?: string[] | ErrorTypes[];

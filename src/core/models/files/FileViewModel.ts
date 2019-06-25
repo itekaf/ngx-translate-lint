@@ -1,9 +1,10 @@
 import { FileModel } from "./FileModel";
-import { KeyModel } from "./../KeyModel";
+import { KeyModel } from "../key/KeyModel";
+import { PathModel } from "../path/PathModel";
 
 class FileViewModel extends FileModel {
     constructor(
-        path: string,
+        path: PathModel,
         files: string[] = [],
         keys: KeyModel[] = [],
         ignore: string = '',

@@ -1,13 +1,16 @@
 import { get } from 'lodash';
 
-import { KeyModel } from '../KeyModel';
+import { KeyModel } from '../key/KeyModel';
 import { FileModel } from './FileModel';
+import { PathModel } from '../path/PathModel';
 
 class FileLanguageModel extends FileModel {
     constructor(
-        path: string,
+        path: PathModel,
+        // change
         files: string[] = [],
         keys: KeyModel[] = [],
+        // change
         ignore: string = '',
     ) {
         super(path, files, keys, ignore);

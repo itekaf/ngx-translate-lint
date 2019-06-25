@@ -8,7 +8,7 @@ import { ResultErrorModel, KeyModel } from './../models';
 
 class AbsentViewKeysRule implements IRule {
     public flow: ErrorFlow = ErrorFlow.views;
-    public handler: ErrorTypes;
+    public type: ErrorTypes;
     public languagesPathList: string[];
 
     get languagesCount(): number {
@@ -16,21 +16,21 @@ class AbsentViewKeysRule implements IRule {
     }
 
     constructor (
-        handler: ErrorTypes = ErrorTypes.error,
+        type: ErrorTypes = ErrorTypes.error,
         languagesPathList: string[],
     ) {
-        this.handler = handler;
+        this.type = type;
         this.languagesPathList = languagesPathList;
     }
 
     public check(viewsKeys: KeyModel[], languagesKeys: KeyModel[]): ResultErrorModel[] {
         const keysList: KeyModel[] = KeysUtils.groupKeysByName([ ...viewsKeys, ...languagesKeys]);
-        const keysListError: KeyModel[] = keysList.filter((key: KeyModel) => !(key.languages.length === this.languagesCount));
+        const keysListError: KeyModel[] = keysList.filter((key: KeyModel) => !(key.localesList.length === this.languagesCount));
         const resultErrorList: ResultErrorModel[] = keysListError.reduce((result: ResultErrorModel[], key: KeyModel) => {
-            const resultErrors: ResultErrorModel[] = key.views.map((viewPath: string) => {
-                const absentLanguagePath: string[] = differenceBy(this.languagesPathList, key.languages)
+            const resultErrors: ResultErrorModel[] = key.templatesList.map((viewPath: string) => {
+                const absentLanguagePath: string[] = differenceBy(this.languagesPathList, key.localesList)
                     .map((filePath: string) => path.basename(filePath));
-                const resultErrorModel: ResultErrorModel = new ResultErrorModel(key.name, this.flow, this.handler, viewPath, absentLanguagePath);
+                const resultErrorModel: ResultErrorModel = new ResultErrorModel(key.name, this.flow, this.type, viewPath, absentLanguagePath);
                 return resultErrorModel;
             });
             result.push(...resultErrors);

@@ -97,8 +97,8 @@ describe('Integration', () => {
         it('should be custom', () => {
             // Arrage
             const errorConfig: IRulesConfig = {
-                keysOnViews: ErrorTypes.warning,
-                zombieKeys: ErrorTypes.disable,
+                views: ErrorTypes.warning,
+                zombies: ErrorTypes.disable
             };
 
             // Act
@@ -113,8 +113,8 @@ describe('Integration', () => {
     it('with full arguments', () => {
         // Arrange
         const errorConfig: IRulesConfig = {
-            keysOnViews: ErrorTypes.error,
-            zombieKeys: ErrorTypes.warning,
+            views: ErrorTypes.error,
+            zombies: ErrorTypes.warning
         };
         const absolutePathProject: string = path.resolve(__dirname, process.cwd(), relativePathProject);
         const ignoreAbsolutePorjectPath: string = path.resolve(__dirname, process.cwd(), ignoreRelativeProject);

@@ -1,8 +1,9 @@
 import { ErrorTypes } from "./../enums";
 
 interface IRulesConfig {
-    keysOnViews: ErrorTypes;
-    zombieKeys: ErrorTypes;
+    views?: ErrorTypes;
+    zombies?: ErrorTypes;
+    misprint?: boolean;
 }
 
 export { IRulesConfig };

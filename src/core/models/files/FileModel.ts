@@ -1,16 +1,18 @@
 import fs from 'fs';
 
-import { KeyModel } from "./../KeyModel";
+import { KeyModel } from "../key/KeyModel";
+import { PathModel } from '../path/PathModel';
+
 import { PathUtils, KeysUtils } from "./../../utils";
 
 abstract class FileModel {
-    public path: string;
+    public path: PathModel;
     public keys: KeyModel[];
     public files: string[];
     public ignore: string | undefined;
 
     constructor(
-        path: string,
+        path: PathModel,
         files: string[] = [],
         keys: KeyModel[] = [],
         ignore: string | undefined = undefined,
@@ -23,7 +25,7 @@ abstract class FileModel {
 
     public getNormalizeFiles(): string[] {
         const ignorePathList: string[] = this.ignore && this.ignore !== '' ? this.ignore.split(',') : [];
-        const resultFilesList: string[] = PathUtils.getNormalizeFiles(this.path, ignorePathList);
+        const resultFilesList: string[] = PathModel.getNormalizeFiles(this.path.absolute, ignorePathList);
 
         if (!resultFilesList.length) {
             throw Error(`Cannot found files for path: '${this.path}'`);

@@ -1,7 +1,7 @@
 import { IRule } from './IRule';
 import { ILogger } from './ILogger';
-import { IAppConfig } from './IAppConfig';
 import { IRulesConfig } from './IRulesConfig';
 import { IValidationMessage } from './IValidationMessage';
+import { IAppConfig, IDefaultValues } from './IAppConfig';
 
-export { IRule, IAppConfig, IRulesConfig, IValidationMessage, ILogger };
+export { IRule, IAppConfig, IRulesConfig, IValidationMessage, ILogger, IDefaultValues };

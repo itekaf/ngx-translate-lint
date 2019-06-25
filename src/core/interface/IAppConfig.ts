@@ -10,4 +10,4 @@ interface IAppConfig {
     defaultValues: IDefaultValues;
 }
 
-export { IAppConfig };
+export { IAppConfig, IDefaultValues };

@@ -1,6 +1,6 @@
 import { NgxTranslateLint } from './client';
 import { ErrorTypes, ErrorFlow } from './enums';
-import { IRulesConfig, IAppConfig, IRule, IValidationMessage, ILogger } from './interface';
+import { IRulesConfig, IAppConfig, IRule, IValidationMessage, ILogger, IDefaultValues } from './interface';
 import {
     KeyModel,
     ResultModel,
@@ -18,7 +18,7 @@ export default NgxTranslateLint;
 export {
     NgxTranslateLint,
     ErrorTypes, ErrorFlow,
-    IRulesConfig, IAppConfig, IRule, IValidationMessage, ILogger,
+    IRulesConfig, IAppConfig, IRule, IValidationMessage, ILogger, IDefaultValues,
     KeyModel,
     ResultModel,
     ResultFileModel,

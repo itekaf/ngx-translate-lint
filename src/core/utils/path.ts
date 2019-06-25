@@ -6,15 +6,14 @@ class PathUtils {
         return path.isAbsolute(filePath) ? filePath : path.resolve(process.cwd(), filePath);
     }
 
-    public static getNormalizeFiles(folder: string, ignores: string[] = []): string[] {
+    public static getNormalizeFiles(folder: string | undefined, ignores: string[] = []): string[] {
+        if (!folder) return [];
         const correctFilesPath: string = PathUtils.resolvePath(folder);
         const correctIgnorePath: string[] = ignores.map((path: string) => PathUtils.resolvePath(path.trim()));
 
         return glob.sync(correctFilesPath, {
             ignore: correctIgnorePath,
-        }).map((filePath: string) => {
-            return path.normalize(filePath);
-         });
+        }).map((filePath: string) => path.normalize(filePath));
     }
 }
 

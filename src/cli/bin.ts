@@ -45,7 +45,7 @@ const options: OptionModel[] = [
         type: OptionsTypes.enum,
         describe: `Described how to handle the error of missing keys on view`,
         description: ``,
-        default: ErrorTypes.error,
+        default: config.defaultValues.rules.views,
         possibaleValues: [
             ErrorTypes.disable,
             ErrorTypes.warning,
@@ -59,7 +59,7 @@ const options: OptionModel[] = [
         type: OptionsTypes.enum,
         describe: `Described how to handle the error of zombies keys`,
         description: ``,
-        default: ErrorTypes.warning,
+        default: config.defaultValues.rules.zombies,
         possibaleValues: [
             ErrorTypes.disable,
             ErrorTypes.warning,
@@ -77,6 +77,15 @@ const options: OptionModel[] = [
             'relative path',
             'absolute path'
         ]
+    }),
+    new OptionModel({
+        short: 'm',
+        name: 'misprint',
+        required: false,
+        type: OptionsTypes.boolean,
+        default: config.defaultValues.rules.misprint,
+        describe: `Find a degree of similarity between errors and languages keys and print misprint keys`,
+        description: ``,
     })
 ];
 
@@ -98,7 +107,7 @@ Examples:
 
     $ ${name} -p '${config.defaultValues.projectPath}' -l '${config.defaultValues.languagesPath}'
     $ ${name} -p '${config.defaultValues.projectPath}' -z '${ErrorTypes.disable}' -v '${ErrorTypes.error}'
-    $ ${name} -p '${config.defaultValues.projectPath}' -i './src/assets/i18n/EN-us.json, ./stc/app/app.*.{html,ts}'
+    $ ${name} -p '${config.defaultValues.projectPath}' -i './src/assets/i18n/EN-us.json'
 
 `);
     });
@@ -106,7 +115,7 @@ Examples:
 commander.parse(process.argv);
 
 if (commander.project && commander.languages) {
-    runLint(commander.project, commander.languages, commander.zombies, commander.views, commander.ignore);
+    runLint(commander.project, commander.languages, commander.zombies, commander.views, commander.ignore, commander.misprint);
 } else {
     const requiredOptions: OptionModel[] = options.filter((option: OptionModel) => option.required);
     const missingRequiredOption: boolean = requiredOptions.reduce((acum: boolean, option: OptionModel) => {

@@ -1,4 +1,5 @@
-import { KeyModel } from './KeyModel';
+import { KeyModel } from './key/KeyModel';
+import { PathModel } from './path/PathModel';
 
 import { ResultModel } from './results/ResultModel';
 import { ResultFileModel } from './results/ResultFileModel';
@@ -11,7 +12,7 @@ import { FileLanguageModel } from './files/FileLanguageModel';
 import { ErrorModel } from './error/ErrorModel';
 import { FatalErrorModel} from './error/FatalErrorModel';
 
-import { StylishLogger } from './StylishLogger';
+import { StylishLogger } from './logger/StylishLogger';
 export {
     KeyModel,
     StylishLogger,

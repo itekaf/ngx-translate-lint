@@ -7,8 +7,10 @@ class ResultErrorModel implements IValidationMessage  {
     public value: string;
     public errorFlow: ErrorFlow;
     public errorType: ErrorTypes;
-    public abasentedPath?: string | string[];
     public currentPath: string;
+
+    public suggestions?: string[] = [];
+    public abasentedPath?: string | string[];
 
     constructor(
         value: string,
@@ -16,12 +18,14 @@ class ResultErrorModel implements IValidationMessage  {
         errorType: ErrorTypes = ErrorTypes.error,
         currentPath: string,
         absentedPath?: string | string[],
+        suggestions: string[] = [],
     ) {
         this.value = value;
         this.errorFlow = errorFlow;
         this.errorType = errorType;
         this.currentPath = currentPath;
         this.abasentedPath = absentedPath;
+        this.suggestions = suggestions;
     }
 
     get message(): string | string[] | null {

@@ -7,7 +7,7 @@ class OptionModel implements IOption {
     public name: keyof IArgv;
     public type: OptionsTypes;
     public required: boolean = false;
-    public default?: string | ErrorTypes;
+    public default?: string | boolean | ErrorTypes;
     public describe: string; // Short, used for usage message
     public description?: string; // Long, used for `--help`
     public possibaleValues?: string[] | ErrorTypes[];
