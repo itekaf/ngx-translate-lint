@@ -2,7 +2,7 @@
 
 The commit message format is important as these messages are used
 to create a changelog for each release. The issue number helps
-to create more consistent and useful changelogs.
+to create more consistent and useful changelogs. 
 
 Each commit message consists of a **header**, a [**body**](#body) and a [**footer**](#footer).
 The header has a special format that includes a [type](#type) and a [subject](#subject):
