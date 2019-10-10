@@ -5,8 +5,8 @@ import { KeyModel } from "./../models";
 class KeysUtils {
     public static groupKeysByName(keys: KeyModel[]) : KeyModel[] {
         return chain<KeyModel>(keys).groupBy("name").map((dictionary, key) => {
-            const views: string[] | undefined  = union(...map<KeyModel, keyof KeyModel>(dictionary, 'views'));
-            const languages: string[] | undefined = union(...map<KeyModel, keyof KeyModel>(dictionary, 'languages'));
+            const views: string[] | undefined  = union(...map<KeyModel, keyof KeyModel>(dictionary, 'localesList'));
+            const languages: string[] | undefined = union(...map<KeyModel, keyof KeyModel>(dictionary, 'templatesList'));
             const item: KeyModel = new KeyModel(key, views, languages);
             return item;
         }).value();
