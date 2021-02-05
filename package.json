@@ -1,0 +1,114 @@
+{
+    "author": "Raman Lauryniuk <romanrostislavovich@gmail.com>",
+    "name": "ngx-translate-lint",
+    "version": "1.14.1",
+    "description": "Simple tools for check `ngx-translate` keys in app",
+    "license": "MIT",
+    "repository": "svoboda-rabstvo/ngx-translate-lint",
+    "bugs": "https://github.com/svoboda-rabstvo/ngx-translate-lint/issues",
+    "bin": {
+        "ngx-translate-lint": "dist/bin.js"
+    },
+    "main": "dist/src/core/index.js",
+    "scripts": {
+        "tsc": "./node_modules/.bin/tsc",
+        "markdownlint": "./node_modules/.bin/markdownlint",
+        "tslint": "./node_modules/.bin/tslint",
+        "doc:cli": "typedoc --mode modules --excludePrivate --excludeProtected --out ./docs/cli/ ./src/cli/",
+        "doc:core": "typedoc --mode modules --excludePrivate --excludeProtected --out ./docs/core/ ./src/core/",
+        "doc": "npm run doc:core && npm run doc:cli",
+        "lint:typescript": "tslint -c tslint.json --project . -t codeFrame",
+        "lint:markdown": "markdownlint --config ./config/markdownlint.json ./docs/**/*.md",
+        "test:unit": "nyc mocha -r ts-node/register ./test/unit/*.test.ts",
+        "test:integration": "mocha -r ts-node/register ./test/integration/*.test.ts",
+        "build": "tsc -p .",
+        "lint": "npm run lint:typescript && npm run lint:markdown",
+        "test": "npm run lint && npm run build && npm run test:integration",
+        "semantic-release": "semantic-release",
+        "self-lint": "npx ngx-translate-lint -p ./test/integration/inputs/views/*.{html,ts} -l ./test/integration/inputs/locales/*.json -i ./test/integration/inputs/locales/incorrect.json"
+    },
+    "files": [
+        "dist/",
+        "README.md"
+    ],
+    "keywords": [
+        "ngx-translate",
+        "validator",
+        "linting",
+        "cli"
+    ],
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org/",
+        "tag": "latest",
+        "access": "public"
+    },
+    "nyc": {
+        "check-coverage": true,
+        "lines": 70,
+        "statements": 70,
+        "functions": 70,
+        "branches": 70,
+        "extension": [
+            ".ts",
+            ".tsx"
+        ],
+        "exclude": [
+            "coverage/**/*",
+            "test/**/*",
+            "dist/**/*",
+            "src/config.ts",
+            "index.ts",
+            "bin.ts"
+        ],
+        "reporter": [
+            "html",
+            "text-summary"
+        ],
+        "all": true,
+        "require": [
+            "ts-node/register"
+        ]
+    },
+    "dependencies": {
+        "@angular/compiler": "^11.1.1",
+        "@angular/compiler-cli": "^11.1.1",
+        "@angular/core": "^11.1.1",
+        "chalk": "^2.4.2",
+        "commander": "^2.20.0",
+        "conventional-cli": "^1.2.0",
+        "dir-glob": "^3.0.1",
+        "fs": "0.0.1-security",
+        "glob": "^7.1.4",
+        "lodash": "^4.17.20",
+        "ngast": "^0.6.2",
+        "path": "^0.12.7",
+        "rxjs": "^6.5.4",
+        "string-similarity": "^4.0.1",
+        "typescript": "^4.1.2"
+    },
+    "devDependencies": {
+        "@semantic-release/changelog": "^3.0.2",
+        "@semantic-release/git": "^7.0.8",
+        "@types/chai": "^4.1.7",
+        "@types/chalk": "^2.2.0",
+        "@types/commander": "^2.12.2",
+        "@types/dir-glob": "^2.0.0",
+        "@types/glob": "^7.1.1",
+        "@types/lodash": "^4.14.132",
+        "@types/mocha": "^5.2.6",
+        "@types/node": "^12.0.2",
+        "@types/sinon": "^7.0.11",
+        "@types/string-similarity": "^3.0.0",
+        "chai": "^4.2.0",
+        "husky": "^2.3.0",
+        "markdownlint-cli": "^0.16.0",
+        "mocha": "^8.2.1",
+        "nyc": "^14.1.1",
+        "semantic-release": "^17.3.7",
+        "sinon": "^7.3.2",
+        "ts-node": "^9.0.0",
+        "tslint": "^5.11.0",
+        "typedoc": "^0.15.0",
+        "typescript": "^4.1.2"
+    }
+}
